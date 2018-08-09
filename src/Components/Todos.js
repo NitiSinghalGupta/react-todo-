@@ -7,7 +7,10 @@ export default class Todos extends Component {
         console.log('Todos Props', this.props)
         let todos = this.props.todos.map( (todo) => {
             return (
-                <Todo key={todo._id}  todo={todo}/>
+                <Todo key={todo._id}  
+                      todo={todo}
+                      onDeleteTodo={this.props.onDeleteTodo}                     
+                      />
                  )
         })         
     return (

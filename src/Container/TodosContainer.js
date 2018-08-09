@@ -10,6 +10,7 @@ export default class TodosContainer extends Component {
       todos: []
     }
     this.createTodo = this.createTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   componentDidMount = () => {
@@ -39,12 +40,24 @@ export default class TodosContainer extends Component {
     })
 }
 
+deleteTodo(todo) {
+  TodoModel.delete(todo).then((res) => {
+      let todos = this.state.todos.filter(function(todo) {
+        return todo._id !== res.data._id
+      });
+      this.setState({todos})
+  })
+}
+
   render() {  
   
     return (
       <div className="todosComponent" >
         <h1> Welcome to my Todos Page! </h1>
-        <Todos  todos={this.state.todos}   />
+        <Todos  
+        todos={this.state.todos}   
+        onDeleteTodo={this.deleteTodo}
+        />
         <CreateTodoForm
         createTodo={ this.createTodo } />
       </div>
