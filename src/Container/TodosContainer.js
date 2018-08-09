@@ -11,6 +11,8 @@ export default class TodosContainer extends Component {
     }
     this.createTodo = this.createTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
 
   componentDidMount = () => {
@@ -49,6 +51,23 @@ deleteTodo(todo) {
   })
 }
 
+updateTodo(todoBody) {
+  var todoId = this.state.editingTodoId
+  function isUpdatedTodo(todo) {
+      return todo._id === todoId;
+  }
+  TodoModel.update(todoId, todoBody).then((res) => {
+      let todos = this.state.todos
+      todos.find(isUpdatedTodo).body = todoBody
+      this.setState({todos: todos, editingTodoId: null, editing: false})
+  })
+}
+editTodo(todo){
+this.setState({
+  editingTodoId: todo._id,
+  editing: true
+})
+}
   render() {  
   
     return (
@@ -57,6 +76,9 @@ deleteTodo(todo) {
         <Todos  
         todos={this.state.todos}   
         onDeleteTodo={this.deleteTodo}
+        onEditTodo={this.editTodo}
+        onDeleteTodo={this.deleteTodo}
+        onUpdateTodo={this.updateTodo}
         />
         <CreateTodoForm
         createTodo={ this.createTodo } />

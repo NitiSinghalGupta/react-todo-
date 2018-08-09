@@ -1,4 +1,5 @@
 import React, {Component}from 'react';
+import TodoForm from '.Component/TodoForm'
 
 export default class Todo extends Component {
     constructor() {
@@ -11,7 +12,14 @@ export default class Todo extends Component {
     render(){
         return (
             <p data-index={this.props.todo.id}>
-                <span>{this.props.todo.body}</span>
+                <span onClick={ this.editClickedTodo }>
+                {/* {this.props.todo.body} */}
+                <TodoForm
+                    autoFocus={true}
+                    buttonName="Update Todo!"
+                    onUpdateTodo={this.props.onUpdateTodo} />
+                </span>
+                { this.props.editingTodoId === this.props.todo._id ? `${this.props.todo.body} is being edited` : '' }
                 <span
                         className='deleteButton'
                         onClick={this.deleteClickedTodo}>

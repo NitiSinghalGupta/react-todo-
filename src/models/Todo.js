@@ -14,4 +14,10 @@ export default class TodoModel {
     let request = axios.delete(`https://super-crud-api.herokuapp.com/api/todos/${todo._id}`)
     return request
     }  
+    static update(todoId, todoBody) {
+        let request = axios.put(`https://super-crud-api.herokuapp.com/api/todos/${todoId}`, {
+            body: todoBody
+        })
+        return request
+    }
 }

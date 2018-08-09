@@ -9,7 +9,10 @@ export default class Todos extends Component {
             return (
                 <Todo key={todo._id}  
                       todo={todo}
-                      onDeleteTodo={this.props.onDeleteTodo}                     
+                      editingTodoId={this.props.editingTodoId}
+                      onEditTodo={this.props.onEditTodo}
+                      onDeleteTodo={this.props.onDeleteTodo}
+                      onUpdateTodo={this.props.onUpdateTodo}                   
                       />
                  )
         })         
