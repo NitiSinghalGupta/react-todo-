@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default class Header extends Component{
   render(){
     return (
-      <header>
+      <header className="header">
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
             <div className="collapse navbar-collapse" id="navigation">
